@@ -1,0 +1,152 @@
+public class Design {
+    // Floridian Tooth Records Design
+
+// Data
+
+// names : array of String, one per family member
+// teeth : 3D array of char, teeth[person][layer][tooth]
+//         plane  = person (1 to 6 people)
+//         row    = layer (0 = uppers, 1 = lowers)
+//         column = tooth (up to 8 per layer), each 'I', 'B' or 'M'
+
+// Constants: MIN_PEOPLE = 1, MAX_PEOPLE = 6, MAX_TEETH = 8, NUM_LAYERS = 2,
+//            LAYER_NAMES = Uppers, Lowers; UPPER = 0, LOWER = 1;
+//            layer letters U, L; tooth letters I, B, M; menu letters P, E, R, X;
+//            ROUNDING = 100.0; NOT_FOUND = -1
+
+// main
+
+// 1. Print the welcome message and underline
+// 2. numberOfPeople = readNumberOfPeople
+// 3. Create names (numberOfPeople) and teeth (numberOfPeople x NUM_LAYERS rows)
+// 4. readFamily(names, teeth)
+// 5. Repeat
+//      5.1 Print a blank line
+//      5.2 option = readMenuOption
+//      5.3 If option is P: print a blank line, printFamily(names, teeth)
+//          If option is E: extractTooth(names, teeth)
+//          If option is R: reportRootCanals(teeth)
+//    Until option is X
+// 6. Print a blank line and the exit message with a smile
+
+
+
+// readNumberOfPeople
+
+// 1. Prompt for and read the number of people
+// 2. While it is less than MIN_PEOPLE or more than MAX_PEOPLE
+//      2.1 Print "Invalid number of people, try again" and read again
+// 3. Read the rest of the line
+// 4. Return the number of people
+//
+// readFamily(names, teeth)
+
+// 1. For each person
+//      1.1 names[person] = readName(person)
+//      1.2 For each layer (uppers, lowers)
+//            teeth[person][layer] = readTeeth(names[person], layer)
+
+
+
+// readName(person)
+
+// 1. Prompt for the name of family member person+1
+// 2. Read and return the name
+
+// readTeeth(name, layer)
+
+// 1. Prompt for and read the teeth string, converted to upper case
+// 2. While hasValidToothTypes is false or the length is more than MAX_TEETH
+//      2.1 If the tooth types are not valid, print "Invalid teeth types"
+//          Otherwise print "Too many teeth"
+//      2.2 Read the teeth string again, converted to upper case
+// 3. Create a char array the length of the string
+// 4. Copy each character of the string into the array
+// 5. Return the array
+
+
+// hasValidToothTypes(teethString)
+
+// 1. allValid = true
+// 2. For each character in the string
+//      2.1 If it is not I, B or M, set allValid to false
+// 3. Return allValid
+
+
+// readMenuOption
+
+// 1. Prompt for and read the option, converted to upper case
+// 2. While it is not exactly one letter, or not P, E, R or X
+//      2.1 Print "Invalid menu option, try again" and read again
+// 3. Return the option letter
+
+
+// printFamily(names, teeth)
+// 1. For each person
+//      1.1 Print the person's name
+//      1.2 For each layer, printLayer(LAYER_NAMES[layer], teeth[person][layer])
+
+
+// printLayer(layerName, layerTeeth)
+// 1. Print the layer name
+// 2. For each tooth, print its number (from 1) and its letter
+// 3. End the line
+
+
+// extractTooth(names, teeth)
+// 1. person = readFamilyMember(names)
+// 2. layer = readLayer
+// 3. toothNumber = readToothNumber(teeth[person][layer])
+// 4. Set teeth[person][layer][toothNumber - 1] to M
+
+
+// readFamilyMember(names)
+// 1. Prompt for and read a name; person = findFamilyMember(names, name)
+// 2. While person is NOT_FOUND
+//      2.1 Print "Invalid family member, try again", read and search again
+// 3. Return person
+
+
+// findFamilyMember(names, name)
+// 1. Linear search names for name, ignoring case
+// 2. Return the index if found, otherwise NOT_FOUND
+
+// readLayer
+// 1. Prompt for and read the layer letter, converted to upper case
+// 2. While it is not exactly one letter, or not U or L
+//      2.1 Print "Invalid layer, try again" and read again
+// 3. If the letter is U return UPPER, otherwise return LOWER
+
+
+// readToothNumber(layerTeeth)
+// 1. Prompt for and read the tooth number
+// 2. While the number is out of range 1..length or that tooth is M
+//      2.1 If out of range, print "Invalid tooth number, try again"
+//          Otherwise print "Missing tooth, try again"
+//      2.2 Read the tooth number again
+// 3. Read the rest of the line
+// 4. Return the tooth number
+
+
+// reportRootCanals(teeth)
+// 1. I = countFamilyTeeth(teeth, 'I')
+//    B = countFamilyTeeth(teeth, 'B')
+//    M = countFamilyTeeth(teeth, 'M')
+// 2. discriminant = B*B + 4*I*M  (b^2 - 4ac with c = -M)
+// 3. Print root (-B + sqrt(discriminant)) / (2I), rounded to 2 decimal places
+// 4. Print root (-B - sqrt(discriminant)) / (2I), rounded to 2 decimal places
+
+// countFamilyTeeth(teeth, toothType)
+// 1. count = 0
+// 2. For each person and each layer
+//      2.1 Add countLayerTeeth(teeth[person][layer], toothType) to count
+// 3. Return count
+
+
+
+// countLayerTeeth(layerTeeth, toothType)
+// 1. count = 0
+// 2. For each tooth, if it equals toothType add 1 to count
+// 3. Return count
+
+} // end of class
